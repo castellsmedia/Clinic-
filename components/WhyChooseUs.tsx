@@ -23,7 +23,7 @@ export const WhyChooseUs: React.FC = () => {
     >
       
       {/* Background Pattern (Base) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px]"></div>
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#E30613] to-transparent opacity-50"></div>
 
       {/* GENERATIVE ART LAYER (Interactive Spotlight) */}
@@ -37,8 +37,8 @@ export const WhyChooseUs: React.FC = () => {
           {/* The Aurora Gradient */}
           <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg_at_50%_50%,#1866B9_0deg,#E30613_120deg,#FDC506_240deg,#1866B9_360deg)] opacity-30 animate-spin-slower blur-3xl"></div>
           
-          {/* The Grid Overlay that "catches" the light */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+          {/* The Grid Overlay that "catches" the light - MATCHING SIZE 40px */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
           
           {/* Core Hotspot */}
           <div 

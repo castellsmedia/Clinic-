@@ -135,8 +135,8 @@ export const Brands: React.FC = () => {
       
       {/* TECHNICAL BACKGROUND GRID - High Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-         {/* Darker gray lines for visibility on light background */}
-         <div className="absolute inset-0 bg-[linear-gradient(to_right,#D1D5DB_1px,transparent_1px),linear-gradient(to_bottom,#D1D5DB_1px,transparent_1px)] bg-[size:40px_40px] opacity-60"></div>
+         {/* Darker gray lines (#9CA3AF) for GUARANTEED visibility on light background */}
+         <div className="absolute inset-0 bg-[linear-gradient(to_right,#9CA3AF_1px,transparent_1px),linear-gradient(to_bottom,#9CA3AF_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"></div>
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 mb-16 text-center relative z-10">

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ShieldCheck, Hash, Star } from 'lucide-react';
+import { ShieldCheck, Star } from 'lucide-react';
 
 export const TeamSection: React.FC = () => {
   const team = [
@@ -8,42 +8,38 @@ export const TeamSection: React.FC = () => {
       id: "UNIT-01",
       name: "Alex Richardson",
       role: "Founder & Chief Tech",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
       specialty: "High-End Refrigeration",
       exp: "23 Years",
-      color: "#E30613" // Red
     },
     {
       id: "HQ-LEAD",
       name: "Sarah Jenkins",
       role: "Head of Dispatch",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1200",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
       specialty: "Logistics & Support",
       exp: "12 Years",
-      color: "#1866B9" // Blue
     },
     {
       id: "UNIT-04",
       name: "Mike Thompson",
       role: "Senior Technician",
-      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200",
+      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=800",
       specialty: "Gas & Electric Ranges",
       exp: "18 Years",
-      color: "#FDC506" // Yellow
     },
     {
       id: "UNIT-09",
       name: "David Lee",
       role: "Field Specialist",
-      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=1200",
+      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800",
       specialty: "Laundry Systems",
       exp: "9 Years",
-      color: "#1D1D1B" // Black
     }
   ];
 
   return (
-    <section className="py-24 bg-[#F4F6F8] relative z-20">
+    <section className="py-24 bg-[#F4F6F8] relative z-20 border-t border-white/50">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20">
         
         <div className="mb-16 flex flex-col md:flex-row justify-between items-end">
@@ -63,13 +59,13 @@ export const TeamSection: React.FC = () => {
             </div>
         </div>
 
-        {/* STATIC TECHNICAL GRID */}
+        {/* STATIC TECHNICAL GRID - SQUARE CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((member, idx) => (
                 <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group">
                     
                     {/* Image Area */}
-                    <div className="relative h-80 overflow-hidden">
+                    <div className="relative h-80 overflow-hidden bg-gray-100">
                         <img 
                             src={member.image} 
                             alt={member.name} 
@@ -80,11 +76,9 @@ export const TeamSection: React.FC = () => {
                                 {member.id}
                             </div>
                         </div>
-                        {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
                         
                         {/* Floating Name on Image */}
-                        <div className="absolute bottom-4 left-4 text-white">
+                        <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
                             <div className="bg-[#E30613] px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide w-fit mb-1 shadow-sm">
                                 {member.role}
                             </div>
@@ -115,7 +109,7 @@ export const TeamSection: React.FC = () => {
                         <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
                              <div className="flex items-center gap-1.5">
                                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                                 <span className="text-[9px] font-bold text-gray-400 uppercase">On Duty</span>
+                                 <span className="text-[9px] font-bold text-gray-400 uppercase">Active Status</span>
                              </div>
                              <ShieldCheck size={14} className="text-gray-300 group-hover:text-[#00B67A] transition-colors" />
                         </div>

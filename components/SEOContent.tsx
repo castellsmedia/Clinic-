@@ -53,4 +53,3 @@ export const SEOContent: React.FC = () => {
     </section>
   );
 };
-    

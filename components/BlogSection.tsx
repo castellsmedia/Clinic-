@@ -6,19 +6,19 @@ export const BlogSection: React.FC = () => {
   const posts = [
     {
       title: "5 Signs Your Refrigerator Needs Immediate Repair",
-      excerpt: "From strange noises to frost buildup, learn the early warning signals of compressor failure before you lose your groceries.",
+      excerpt: "From strange noises to frost buildup, learn the early warning signals of compressor failure.",
       date: "Oct 12, 2023",
       category: "Maintenance",
       author: "Alex R.",
-      image: "https://images.unsplash.com/photo-1571175443880-49e1d58b794a?auto=format&fit=crop&q=80&w=800" // Kitchen/Fridge context
+      image: "https://images.unsplash.com/photo-1571175443880-49e1d58b794a?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Gas vs. Electric Ranges: Which Lasts Longer?",
-      excerpt: "A technician's perspective on the durability, repair costs, and cooking performance of modern appliances.",
+      excerpt: "A technician's perspective on the durability, repair costs, and cooking performance.",
       date: "Sep 28, 2023",
       category: "Buying Guide",
       author: "Mike T.",
-      image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800" // Kitchen cooking
+      image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Why Your Washer Smells (And How to Fix It)",
@@ -26,7 +26,7 @@ export const BlogSection: React.FC = () => {
       date: "Sep 15, 2023",
       category: "DIY Tips",
       author: "Sarah J.",
-      image: "https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?auto=format&fit=crop&q=80&w=800" // Laundry
+      image: "https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?auto=format&fit=crop&q=80&w=800"
     }
   ];
 
@@ -52,13 +52,13 @@ export const BlogSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {posts.map((post, idx) => (
                 <div key={idx} className="group cursor-pointer">
-                    <div className="relative h-64 rounded-2xl overflow-hidden mb-6 bg-gray-200 border border-gray-100 shadow-sm">
+                    <div className="relative h-64 rounded-xl overflow-hidden mb-6 bg-gray-200 border border-gray-100 shadow-sm">
                         <img 
                             src={post.image} 
                             alt={post.title} 
                             className="w-full h-full object-cover transition-all duration-700 filter grayscale group-hover:grayscale-0 group-hover:scale-105"
                         />
-                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-md text-[10px] font-black text-[#1D1D1B] uppercase tracking-wide shadow-sm">
+                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black text-[#1D1D1B] uppercase tracking-wide shadow-sm">
                             {post.category}
                         </div>
                     </div>
@@ -87,15 +87,7 @@ export const BlogSection: React.FC = () => {
                 </div>
             ))}
         </div>
-
-        <div className="mt-12 md:hidden text-center">
-            <a href="#" className="inline-flex items-center gap-2 text-sm font-bold text-[#1D1D1B]">
-                View All Articles <ArrowRight size={16} />
-            </a>
-        </div>
-
       </div>
     </section>
   );
 };
-    
