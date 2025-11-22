@@ -24,19 +24,38 @@ export const HeroText: React.FC = () => {
          </div>
       </div>
 
-      {/* Main Headline - Massive Scale - SOLID COLORS */}
-      <h1 className="text-6xl md:text-[5.5rem] lg:text-[7rem] leading-[0.9] font-[900] tracking-[-0.04em] text-[#1D1D1B] mb-8 animate-fade-in-up delay-100">
-        THE <span className="text-[#1866B9]">CLINIC</span><br />
-        FOR YOUR<br />
-        <span className="relative inline-block">
-            <span className="relative z-10 text-[#1D1D1B]">APPLIANCES</span>
-            <div className="absolute bottom-2 left-0 w-full h-1/3 bg-[#FDC506] -z-0 opacity-60"></div>
-        </span>
-        <span className="text-[#E30613] text-7xl md:text-[8rem] leading-none inline-block animate-pulse-slow">.</span>
+      <style>{`
+          @keyframes fade-in-up-dramatic {
+            0% { opacity: 0; transform: translateY(50px) scale(0.95); filter: blur(10px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+          }
+          @keyframes grow-width {
+            0% { width: 0%; }
+            100% { width: 100%; }
+          }
+          .animate-fade-in-up-dramatic {
+            animation: fade-in-up-dramatic 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
+          .animate-grow-width {
+            animation: grow-width 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
+      `}</style>
+
+      {/* Main Headline - Flex Column for Symmetrical Spacing */}
+      <h1 className="text-6xl md:text-[5.5rem] lg:text-[7rem] font-[900] tracking-[-0.04em] text-[#1D1D1B] mb-8 animate-fade-in-up-dramatic flex flex-col gap-0 md:gap-2" style={{ animationDelay: '0.2s' }}>
+        <div className="leading-none">THE <span className="text-[#1866B9]">CLINIC</span></div>
+        <div className="leading-none">FOR YOUR</div>
+        <div className="leading-none flex items-baseline">
+            <span className="relative inline-block">
+                <span className="relative z-10 text-[#1D1D1B]">APPLIANCES</span>
+                <div className="absolute bottom-2 left-0 h-1/3 bg-[#FDC506] -z-0 opacity-60 animate-grow-width" style={{ animationDelay: '0.8s' }}></div>
+            </span>
+            <span className="text-[#E30613] leading-none inline-block animate-pulse-slow">.</span>
+        </div>
       </h1>
       
       {/* Subheadline with vertical divider layout */}
-      <div className="flex flex-col md:flex-row gap-6 md:items-center mb-10 animate-fade-in-up delay-200">
+      <div className="flex flex-col md:flex-row gap-6 md:items-center mb-10 animate-fade-in-up-dramatic" style={{ animationDelay: '0.4s' }}>
           <div className="w-12 h-1 bg-[#E30613] md:w-1 md:h-16"></div>
           <p className="text-lg md:text-xl text-gray-600 max-w-lg font-medium leading-relaxed">
             We diagnose & cure Refrigerators, Ovens, Washers & Dryers. <br />
@@ -45,21 +64,21 @@ export const HeroText: React.FC = () => {
       </div>
 
       {/* LIVE DISPATCHER STATUS & RADAR WIDGETS */}
-      <div className="flex flex-wrap items-end gap-0 mb-4">
+      <div className="flex flex-wrap items-end gap-0 mb-4 animate-fade-in-up-dramatic" style={{ animationDelay: '0.6s' }}>
         <DispatcherStatus />
         <TechnicianRadar />
       </div>
 
       {/* CTA Buttons - High Tech Style - SOLID */}
-      <div className="flex flex-col sm:flex-row gap-5 animate-fade-in-up delay-300 mb-16 mt-4">
+      <div className="flex flex-col sm:flex-row gap-5 mb-16 mt-4 animate-fade-in-up-dramatic" style={{ animationDelay: '0.8s' }}>
         
         <RippleButton 
             onClick={handleScheduleClick}
-            className="group bg-[#1D1D1B] text-white px-10 py-5 rounded-2xl text-lg font-bold shadow-[0_10px_30px_-10px_rgba(29,29,27,0.5)] hover:shadow-[0_20px_40px_-10px_rgba(29,29,27,0.7)] hover:bg-[#E30613] hover:-translate-y-1 transition-all overflow-hidden"
+            className="group bg-[#E30613] text-white px-10 py-6 rounded-2xl text-xl font-[900] shadow-[0_10px_40px_-10px_rgba(227,6,19,0.6)] hover:shadow-[0_20px_60px_-10px_rgba(227,6,19,0.8)] hover:bg-[#FF1F2D] hover:scale-105 transition-all duration-300 overflow-hidden ring-4 ring-[#E30613]/20"
             rippleColor="#ffffff"
         >
-          <span className="flex items-center gap-3">
-             Schedule Exam <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          <span className="flex items-center gap-3 tracking-wide">
+             SCHEDULE EXAM <ArrowRight size={24} strokeWidth={3} className="group-hover:translate-x-2 transition-transform" />
           </span>
         </RippleButton>
         
@@ -78,7 +97,7 @@ export const HeroText: React.FC = () => {
       </div>
 
       {/* Floating Stats */}
-      <div className="inline-flex flex-wrap gap-2 md:gap-8 p-1 animate-fade-in-up delay-500">
+      <div className="inline-flex flex-wrap gap-2 md:gap-8 p-1 animate-fade-in-up-dramatic" style={{ animationDelay: '1s' }}>
           {[
             { icon: <Star size={14} className="fill-[#FDC506] text-[#FDC506]" />, text: "5.0 Rating" },
             { icon: <Check size={14} className="text-[#1866B9]" />, text: "Licensed & Bonded" },

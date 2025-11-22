@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { HeroText } from './components/HeroText';
 import { HeroForm } from './components/HeroForm';
@@ -11,6 +11,7 @@ import { DetailedServices } from './components/DetailedServices';
 import { WarrantySection } from './components/WarrantySection';
 import { Process } from './components/Process';
 import { Testimonials } from './components/Testimonials';
+import { TeamSection } from './components/TeamSection';
 import { FAQ } from './components/FAQ';
 import { ServiceMap } from './components/ServiceMap';
 import { Footer } from './components/Footer';
@@ -18,9 +19,21 @@ import { LiveBookings } from './components/LiveBookings';
 import { ExitModal } from './components/ExitModal';
 import { Preloader } from './components/Preloader';
 import { CustomCursor } from './components/CustomCursor';
+import { WhyChooseUs } from './components/WhyChooseUs';
+import { ChatBot } from './components/ChatBot';
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
     <>
@@ -41,21 +54,35 @@ const App: React.FC = () => {
         </div>
 
         {/* 3. GENERATIVE ART LAYER: "The Living Grid" */}
-        <div className="fixed inset-0 z-[1] pointer-events-none mask-spotlight transition-opacity duration-500">
-            {/* The Aurora Gradient (Blue/Red/Yellow) - Parallax Movement */}
+        <div 
+            className="fixed inset-0 z-[1] pointer-events-none transition-opacity duration-500"
+            style={{
+                maskImage: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
+                WebkitMaskImage: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
+            }}
+        >
+            {/* The Aurora Gradient (Blue/Red/Yellow) - Parallax Movement - DIMMED */}
             <div 
-                className="absolute inset-[-50%] bg-[conic-gradient(from_0deg_at_50%_50%,#1866B9_0deg,#E30613_120deg,#FDC506_240deg,#1866B9_360deg)] opacity-30 animate-spin-slower blur-3xl will-change-transform"
+                className="absolute inset-[-50%] bg-[conic-gradient(from_0deg_at_50%_50%,#1866B9_0deg,#E30613_120deg,#FDC506_240deg,#1866B9_360deg)] opacity-15 animate-spin-slower blur-3xl will-change-transform"
                 style={{ 
                     transform: 'translate(calc(var(--mouse-x, 0) * -0.03px), calc(var(--mouse-y, 0) * -0.03px))' 
                 }}
             ></div>
             
-            {/* The Grid Overlay that "catches" the light */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.9)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.9)_1px,transparent_1px)] bg-[size:40px_40px] mix-blend-overlay"></div>
+            {/* GRID LINE HIGHLIGHT - Explicitly highlights borders */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `linear-gradient(to_right, rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(to_bottom, rgba(255,255,255,0.8) 1px, transparent 1px)`,
+                backgroundSize: '40px 40px',
+                maskImage: 'radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
+                WebkitMaskImage: 'radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), black, transparent)',
+              }}
+            ></div>
             
             {/* Core Hotspot - Brighter white glow exactly at cursor */}
             <div 
-                className="absolute w-[300px] h-[300px] bg-white/40 blur-[80px] rounded-full pointer-events-none mix-blend-overlay"
+                className="absolute w-[300px] h-[300px] bg-white/30 blur-[80px] rounded-full pointer-events-none mix-blend-overlay"
                 style={{ 
                     left: 'var(--mouse-x)', 
                     top: 'var(--mouse-y)', 
@@ -66,6 +93,7 @@ const App: React.FC = () => {
 
         <LiveBookings />
         <ExitModal />
+        <ChatBot />
 
         <Header />
 
@@ -101,20 +129,14 @@ const App: React.FC = () => {
         <Brands />
         <Process />
         <Testimonials />
+        <TeamSection />
         <FAQ />
         <DetailedServices />
+        <WhyChooseUs />
         <WarrantySection />
         <ServiceMap />
         <Footer />
         
-        <div className="fixed bottom-6 right-6 z-50 md:hidden animate-bounce-in">
-          <a href="tel:8187310445" className="relative flex items-center justify-center w-16 h-16 bg-[#E30613] rounded-full shadow-[0_0_0_4px_rgba(255,255,255,0.2)] text-white overflow-hidden border-2 border-white">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 drop-shadow-md">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-              </svg>
-          </a>
-        </div>
-
         <style>{`
           @keyframes scroll-dot {
               0% { transform: translateY(0); opacity: 1; }
@@ -137,25 +159,7 @@ const App: React.FC = () => {
           .perspective-1000 {
               perspective: 1000px;
           }
-          
-          /* Spotlight Mask Logic */
-          .mask-spotlight {
-            /* The mask reveals the colorful layer only around the mouse */
-            mask-image: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), black, transparent);
-            -webkit-mask-image: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), black, transparent);
-          }
         `}</style>
-        
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            document.addEventListener('mousemove', (e) => {
-              const x = e.clientX;
-              const y = e.clientY;
-              document.documentElement.style.setProperty('--mouse-x', x + 'px');
-              document.documentElement.style.setProperty('--mouse-y', y + 'px');
-            });
-          `
-        }} />
 
       </div>
     </>

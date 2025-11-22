@@ -133,7 +133,13 @@ export const Brands: React.FC = () => {
   return (
     <section className="py-24 bg-[#F4F6F8] relative overflow-hidden">
       
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 mb-16 text-center">
+      {/* TECHNICAL BACKGROUND GRID - Explicitly Added */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+         {/* Using a slightly darker gray for lines to ensure visibility on light background */}
+         <div className="absolute inset-0 bg-[linear-gradient(to_right,#D1D5DB_1px,transparent_1px),linear-gradient(to_bottom,#D1D5DB_1px,transparent_1px)] bg-[size:40px_40px] opacity-40"></div>
+      </div>
+
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 mb-16 text-center relative z-10">
          <div className="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full border border-gray-200 shadow-sm mb-6">
             <BadgeCheck size={14} className="text-[#E30613]" />
             <span className="text-[10px] font-black text-[#1D1D1B] uppercase tracking-widest">Factory Authorized Service</span>
@@ -146,24 +152,24 @@ export const Brands: React.FC = () => {
          </p>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
           {/* STATIC GRID - NO MARQUEE */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {brands.map((brand, i) => (
                   <div 
                     key={i} 
-                    className="group relative bg-white h-32 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-center transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] overflow-hidden"
+                    className="group relative bg-white h-32 rounded-3xl border border-gray-200/80 shadow-md flex items-center justify-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-gray-300 overflow-hidden z-10"
                   >
                       {/* Hover Reveal: Authorized Badge */}
-                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                          <div className="flex items-center gap-1 bg-green-50 px-2 py-0.5 rounded text-[9px] font-bold text-green-600 border border-green-100">
+                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0 z-20">
+                          <div className="flex items-center gap-1 bg-green-50 px-2 py-0.5 rounded text-[9px] font-bold text-green-600 border border-green-100 shadow-sm">
                               <ShieldCheck size={10} />
                               <span>Verified</span>
                           </div>
                       </div>
 
                       {/* Brand Logo */}
-                      <div className="w-3/4 h-12 flex items-center justify-center transition-all duration-500 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 group-hover:scale-110">
+                      <div className="w-3/4 h-12 flex items-center justify-center transition-all duration-500 grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 group-hover:scale-110">
                           <BrandLogo 
                             name={brand} 
                             className={`w-full h-full ${

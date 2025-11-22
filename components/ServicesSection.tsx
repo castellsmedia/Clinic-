@@ -11,15 +11,54 @@ const BentoCard: React.FC<{
   accentColor?: string;
   BgIcon?: LucideIcon;
 }> = ({ title, subtitle, icon, className, bgClass, accentColor = '#E30613', BgIcon }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      cardRef.current.style.setProperty('--x', `${x}px`);
+      cardRef.current.style.setProperty('--y', `${y}px`);
+    }
+  };
+
   return (
     <div 
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
       className={`group relative overflow-hidden rounded-[2rem] p-8 transition-all duration-500 hover:-translate-y-1 ${className} ${bgClass || 'bg-white border border-gray-200'}`}
     >
       
+      {/* GENERATIVE ART LAYER (Local Spotlight) */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+        style={{
+            maskImage: 'radial-gradient(400px circle at var(--x) var(--y), black, transparent)',
+            WebkitMaskImage: 'radial-gradient(400px circle at var(--x) var(--y), black, transparent)',
+        }}
+      >
+          {/* Aurora Gradient - Increased Opacity & Removed Blend Mode for Visibility */}
+          <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg_at_50%_50%,#1866B9_0deg,#E30613_120deg,#FDC506_240deg,#1866B9_360deg)] opacity-30 animate-spin-slower blur-3xl"></div>
+          
+          {/* Grid Highlight - Darker lines for visibility on light cards */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+          
+          {/* Core Hotspot Glow */}
+          <div 
+             className="absolute w-[200px] h-[200px] bg-white/40 blur-[60px] rounded-full pointer-events-none mix-blend-overlay"
+             style={{ 
+                 left: 'var(--x)', 
+                 top: 'var(--y)', 
+                 transform: 'translate(-50%, -50%)' 
+             }}
+          ></div>
+      </div>
+
       {/* Animated Background Icon */}
       {BgIcon && (
         <div 
-            className="absolute right-[-20px] bottom-[-20px] opacity-[0.07] group-hover:rotate-12 transition-transform duration-700 pointer-events-none"
+            className="absolute right-[-20px] bottom-[-20px] opacity-[0.07] group-hover:rotate-12 transition-transform duration-700 pointer-events-none z-0"
             style={{ color: accentColor }}
         >
             <BgIcon size={180} strokeWidth={1.5} />
@@ -27,8 +66,8 @@ const BentoCard: React.FC<{
       )}
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-between">
-        <div className="flex justify-between items-start">
+      <div className="relative z-10 h-full flex flex-col justify-between pointer-events-none">
+        <div className="flex justify-between items-start pointer-events-auto">
           <div className={`p-4 rounded-2xl shadow-sm text-[#1D1D1B] bg-white border border-gray-100 group-hover:scale-110 transition-transform duration-300`}>
               {icon}
           </div>
@@ -37,7 +76,7 @@ const BentoCard: React.FC<{
           </div>
         </div>
         
-        <div className="mt-10">
+        <div className="mt-10 pointer-events-auto">
           <h3 className="text-2xl font-[800] text-[#1D1D1B] mb-3 leading-tight">
             {title}
           </h3>
