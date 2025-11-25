@@ -10,11 +10,44 @@ View your app in AI Studio: https://ai.studio/apps/drive/1zio4peLfXJiJBsU2Bj_sOZ
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+**Prerequisites:** Node.js (версия 18 или выше)
 
+### Установка и запуск:
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Установите зависимости:
+   ```bash
+   npm install
+   ```
+
+2. Создайте файл `.env` в корне проекта и добавьте ваш Gemini API ключ:
+   ```bash
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+   Или скопируйте пример:
+   ```bash
+   cp .env.example .env
+   ```
+   Затем отредактируйте `.env` и добавьте ваш API ключ.
+
+3. Запустите проект в режиме разработки:
+   ```bash
+   npm run dev
+   ```
+
+4. Откройте браузер и перейдите по адресу:
+   ```
+   http://localhost:3000
+   ```
+
+### Другие команды:
+
+- **Сборка для продакшена:**
+  ```bash
+  npm run build
+  ```
+
+- **Предпросмотр продакшен сборки:**
+  ```bash
+  npm run preview
+  ```
