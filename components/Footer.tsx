@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
       ctaRef.current.style.setProperty('--y', `${y}px`);
     }
   };
-  
+
   return (
     <footer className="relative z-20">
       {/* 1. Top Marquee - Infinite Scroll */}
@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
         <div className="flex whitespace-nowrap animate-marquee">
             {[...Array(10)].map((_, i) => (
                 <div key={i} className="flex items-center mx-4">
-                    <span className="text-sm font-black text-white tracking-widest uppercase">EMERGENCY SERVICE AVAILABLE</span>
+                    <span className="text-sm font-black text-white tracking-widest uppercase">EMERGENCY SERVICE AVAILABLE</span>111
                     <span className="mx-4 text-[#FDC506]">•</span>
                     <span className="text-sm font-black text-white tracking-widest uppercase">SAME DAY REPAIR</span>
                     <span className="mx-4 text-[#FDC506]">•</span>
@@ -34,18 +34,18 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* 2. Main Call to Action Area - HERO STYLE (Light Mode) WITH GENERATIVE ART */}
-      <div 
+      <div
         ref={ctaRef}
         onMouseMove={handleMouseMove}
         className="relative bg-[#F4F6F8] text-[#1D1D1B] overflow-hidden py-24 md:py-32 group"
       >
-         
+
          {/* Background Grid & Noise (Hero Style) - Base Layer */}
          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
 
          {/* GENERATIVE ART LAYER (Local) */}
-         <div 
+         <div
             className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500"
             style={{
                 maskImage: 'radial-gradient(600px circle at var(--x) var(--y), black, transparent)',
@@ -54,24 +54,24 @@ export const Footer: React.FC = () => {
          >
              {/* The Aurora Gradient */}
              <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg_at_50%_50%,#1866B9_0deg,#E30613_120deg,#FDC506_240deg,#1866B9_360deg)] opacity-20 animate-spin-slower blur-3xl"></div>
-             
+
              {/* The Grid Overlay that "catches" the light */}
              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.9)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.9)_1px,transparent_1px)] bg-[size:40px_40px] mix-blend-overlay"></div>
-             
+
              {/* Core Hotspot */}
-             <div 
+             <div
                 className="absolute w-[200px] h-[200px] bg-white/60 blur-[60px] rounded-full pointer-events-none mix-blend-overlay"
-                style={{ 
-                    left: 'var(--x)', 
-                    top: 'var(--y)', 
-                    transform: 'translate(-50%, -50%)' 
+                style={{
+                    left: 'var(--x)',
+                    top: 'var(--y)',
+                    transform: 'translate(-50%, -50%)'
                 }}
              ></div>
          </div>
 
          <div className="px-6 md:px-12 lg:px-20 relative z-10">
              <div className="max-w-[1600px] mx-auto">
-                
+
                 {/* Technical Ticker (Hero Element) */}
                 <div className="flex items-center gap-4 mb-8 opacity-60">
                     <div className="flex items-center gap-2 text-[10px] font-mono text-[#1D1D1B] border border-gray-300 rounded px-2 py-1 bg-white/50 backdrop-blur">
@@ -84,13 +84,13 @@ export const Footer: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
-                    
+
                     <div className="max-w-4xl relative">
                         <h2 className="text-[12vw] lg:text-[9rem] leading-[0.8] font-[900] tracking-tighter mb-8 text-[#1D1D1B]">
                             READY TO <br/>
                             <span className="text-[#E30613]">FIX IT?</span>
                         </h2>
-                        
+
                         {/* Subtext with Badge */}
                         <div className="flex items-center gap-4 text-gray-600 text-lg md:text-xl max-w-xl">
                             <div className="flex items-center gap-2 px-3 py-1 bg-[#00B67A]/10 rounded-full border border-[#00B67A]/20">
@@ -105,10 +105,10 @@ export const Footer: React.FC = () => {
                     <a href="tel:8187310445" className="group relative w-40 h-40 md:w-64 md:h-64 bg-[#1D1D1B] rounded-full flex flex-col items-center justify-center gap-2 transition-all duration-500 hover:scale-105 shrink-0 overflow-hidden z-20 shadow-2xl shadow-black/20 hover:bg-[#E30613]">
                         {/* Sonar Pulse Effect - Solid Rings */}
                         <div className="absolute inset-0 rounded-full border-2 border-white/30 scale-100 opacity-0 group-hover:animate-ping-slow"></div>
-                        
+
                         {/* Icon with shake animation */}
                         <Phone size={32} className="text-white fill-white mb-2 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 group-hover:animate-shake" />
-                        
+
                         {/* Sliding Text Effect */}
                         <div className="relative h-8 w-full overflow-hidden flex justify-center">
                              <div className="flex flex-col items-center transition-transform duration-300 group-hover:-translate-y-8">
@@ -125,9 +125,9 @@ export const Footer: React.FC = () => {
 
       {/* 3. MEGA FOOTER - DARK MODE - SOLID */}
       <div className="bg-[#111110] text-white border-t border-white/10 relative overflow-hidden">
-         
+
          <div className="max-w-[1600px] mx-auto relative z-10">
-            
+
             {/* Top Row: Logo & Trust Statement */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 md:px-12 py-16 border-b border-white/10">
                 <div>
@@ -153,11 +153,11 @@ export const Footer: React.FC = () => {
 
             {/* Main Grid: 5 Columns */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
-                
+
                 {/* Col 1: Contact Info */}
                 <div className="p-8 lg:p-10 space-y-8">
                     <h4 className="text-xs font-black text-gray-500 uppercase tracking-widest mb-6">Contact Us</h4>
-                    
+
                     <div className="space-y-6">
                         <div className="flex items-start gap-3">
                             <MapPin className="text-[#E30613] mt-1 shrink-0" size={18} />
