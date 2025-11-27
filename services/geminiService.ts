@@ -1,10 +1,25 @@
 
 import { GoogleGenAI, Chat } from "@google/genai";
 
+// Extend Window interface for aistudio
+declare global {
+  interface Window {
+    aistudio?: {
+      hasSelectedApiKey: () => Promise<boolean>;
+      openSelectKey: () => Promise<void>;
+    };
+  }
+}
+
 // Initialize the Gemini API client
 // The API key is obtained from the environment variable process.env.API_KEY
 // Note: For Veo, we will re-initialize this inside the function to ensure we have the user-selected key.
-let ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+let ai: GoogleGenAI | null = null;
+
+// Initialize AI only if API key is available
+if (process.env.API_KEY) {
+  ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+}
 
 /**
  * Generates a "Los Angeles" themed sky/backdrop.
@@ -12,8 +27,12 @@ let ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 export const generateLABackground = async (): Promise<string | null> => {
   try {
     // Ensure we use the latest key if available
+    if (!process.env.API_KEY) {
+      console.warn("GEMINI_API_KEY is not set. AI features will be disabled.");
+      return null;
+    }
     ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    
+
     const model = 'gemini-2.5-flash-image';
     const prompt = `
       A breathtaking abstract vector art background of a Los Angeles sky at sunset.
@@ -29,11 +48,11 @@ export const generateLABackground = async (): Promise<string | null> => {
     });
 
     for (const candidate of response.candidates || []) {
-        for (const part of candidate.content.parts) {
-            if (part.inlineData && part.inlineData.data) {
-                return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
-            }
+      for (const part of candidate.content.parts) {
+        if (part.inlineData && part.inlineData.data) {
+          return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
         }
+      }
     }
     return null;
   } catch (error) {
@@ -47,6 +66,11 @@ export const generateLABackground = async (): Promise<string | null> => {
  */
 export const generateLAVideo = async (): Promise<string | null> => {
   try {
+    if (!process.env.API_KEY) {
+      console.warn("GEMINI_API_KEY is not set. AI features will be disabled.");
+      return null;
+    }
+
     // Check for API Key selection as required for Veo
     if (window.aistudio && !await window.aistudio.hasSelectedApiKey()) {
       await window.aistudio.openSelectKey();
@@ -82,8 +106,8 @@ export const generateLAVideo = async (): Promise<string | null> => {
 
     const videoUri = operation.response?.generatedVideos?.[0]?.video?.uri;
     if (videoUri) {
-        // Append key for download access
-        return `${videoUri}&key=${process.env.API_KEY}`;
+      // Append key for download access
+      return `${videoUri}&key=${process.env.API_KEY}`;
     }
 
     return null;
@@ -99,24 +123,32 @@ export const generateLAVideo = async (): Promise<string | null> => {
  */
 export const createChatSession = (): Chat => {
   // Re-initialize to ensure latest key is used
+  if (!process.env.API_KEY) {
+    throw new Error("GEMINI_API_KEY is not set. Please set it in your .env file.");
+  }
+
   ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  
+
+  if (!ai) {
+    throw new Error("Failed to initialize GoogleGenAI");
+  }
+
   return ai.chats.create({
     model: 'gemini-3-pro-preview',
     config: {
-      systemInstruction: `You are "Unit 01", the AI Dispatcher for Appliance Repair Clinic (Cool Doc) in Los Angeles. 
-      
+      systemInstruction: `You are "Unit 01", the AI Dispatcher for Appliance Repair Clinic (Cool Doc) in Los Angeles.
+
       Your Mission:
       - Act as the first line of support for customers needing appliance repair.
       - Tone: Professional, efficient, slightly robotic/technical but very helpful. Use terms like "Diagnostic", "System Check", "Dispatch", "Unit".
       - Capabilities: You can answer questions about our services (Refrigerators, Ovens, Washers, Dryers, etc.), warranty (90-day parts & labor), and coverage area (LA/San Fernando Valley).
       - Goal: Encourage the user to call (818) 731-0445 or fill out the quote form to book a technician. You cannot book appointments directly, but you can explain the process.
-      
+
       Key Info:
       - Phone: (818) 731-0445
       - Location: Los Angeles, CA
       - Benefits: Same-day service, Upfront pricing, Licensed & Bonded.
-      
+
       If asked about pricing: "We provide upfront flat-rate pricing after a diagnostic. The service call fee is waived with any repair."
       If asked about availability: "Technicians are currently active in the area. I recommend calling immediately to secure a slot."
       `,
